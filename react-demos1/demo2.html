@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>react-demos1</title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="build/browser.min.js"></script>
+</head>
+
+<body>
+    <div id="example"></div>
+
+    <!-- JSX语法的type属性是‘text/babel’ -->
+    <script type="text/babel"> 
+        var arr = [
+                <h1 key="1">Hello Alice</h1>, // key后使用“”来指定字符串字面量作为属性值
+                <h2 key="2">I am study React</h2>,
+                <h3 key="3">I am study React</h3>,
+                <h4 key="4">I am study React</h4>
+            ]
+        
+        ReactDOM.render(
+             <div>
+                {arr}
+            </div>,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+
+</html>

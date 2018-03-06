@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>百分比换算器</title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="build/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+
+    <script type="text/babel">
+        class Input extends React.Component {
+            //初始化构造函数
+            constructor(){
+                super()
+                this.state= {
+                    number: ''
+                }
+            }
+            // 检测input框数据变化
+            handleChange(event) {
+                this.props.setNum(event.target.value)
+            }
+  
+            render () {
+                return (
+                <div>
+                    <input type='number' onChange={this.handleChange.bind(this)} />
+                </div>
+                )
+            }
+        }
+
+        class PercentageShower extends React.Component {
+            render () {
+                let out = new Number(this.props.number)
+                out = out * 100
+                out = out.toFixed(2)
+                return (
+                    <div>{out}%</div>
+                )
+            }
+        }
+
+        class PercentageApp extends React.Component {
+            constructor(){
+                super()
+                this.state = {
+                    number: 0
+                }
+            }
+            
+            // 获取输入框中变化的值
+            handleInput (number) {
+                this.setState({
+                    number: number
+                })
+            }
+            render () {
+                return (
+                <div>
+                    <Input setNum={this.handleInput.bind(this)}/>
+                    <PercentageShower number={this.state.number}/>
+                </div>
+                )
+            }
+        }
+        
+        ReactDOM.render(
+            <PercentageApp />,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>

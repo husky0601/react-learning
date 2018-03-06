@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>demo5</title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="build/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+
+    <script type="text/babel">
+        // Comment组件
+        function Comment(props) {
+            return (
+                <div>
+                    <UserInfo user={props.author} />
+                    <div>
+                        <p>{props.text}</p>
+                    </div>
+                    <div>
+                        <span>{formatDate(props.date)}</span>
+                    </div>
+                </div>
+            )
+            
+        }
+
+        // 提取头像avarta组件
+        function Avatar(props) {
+            console.log(props)
+            return (
+                <img src={props.user.avatarUrl}
+                    alt={props.user.name}/>
+            )
+        }
+        
+        // 提取用户信息UserInfo组件
+        function UserInfo(props) {
+            return (
+                <div>
+                    <Avatar user={props.user} />
+                    <div>
+                        <h3>{props.user.name}</h3>
+                    </div>
+                </div>
+                
+            )
+        }
+
+        // comment数据
+        const comment  = {
+            date: new Date(),
+            text: 'I hope enjoy learning React',
+            author: {
+                name: 'Hello Cat',
+                avatarUrl: 'http://placekitten.com/g/64/64'
+            }
+        }
+
+        // 格式转化
+        function formatDate(date){
+            return date.toLocaleDateString()
+        }
+
+
+        //渲染DOM
+        ReactDOM.render(
+            <Comment
+                date = {comment.date}
+                text = {comment.text}
+                author = {comment.author} 
+            />,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>
