@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>react卡片式组件</title>
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box
+        }
+        .card{
+           width: 400px;
+           min-height: 300px; 
+           margin: 20px auto;
+           border: 1px solid #aaa;
+           border-radius: 5px;
+           box-shadow: 5px 5px 20px #eee;
+           position: relative;
+        }
+        .card-content{
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%)
+        }
+        .card-content div, 
+        .card-content p,
+        .card-content h2{
+            padding: 10px 0;
+        }
+        .border {
+            border: 1px solid #000
+        }
+    </style>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="build/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+
+    <script type="text/babel">
+        // 卡片式组件
+        class Card extends React.Component{
+            render() {
+                // console.log(this.props.children)
+                return (
+                    <div className='card'>
+                        {React.Children.map(this.props.children, (child) => {
+                            return (
+                                <div className='card-content border'>
+                                    {child}
+                                </div>
+                            )
+                        })}
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            /*<Card content={
+                <div>
+                    <h2>React.js 小书</h2>
+                    <div>开源、免费、专业、简单</div>
+                    <p>订阅：<input /></p>
+                </div>
+            }/>,*/
+            <Card>
+                <div>
+                    <h2>React.js 小书</h2>
+                    <div>开源、免费、专业、简单</div>
+                    <p>订阅：<input /></p>
+                </div>
+            </Card>,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>
